@@ -30,16 +30,13 @@ public class ScriptController {
         this.scriptService = scriptService;
     }
 
-    //POST /api/scripts 
-    // creates new script
     @PostMapping
      public ResponseEntity<Script> createScript(@RequestBody Script script) {
         Script createdScript = scriptService.createScript(script);
         return new ResponseEntity<>(createdScript, HttpStatus.CREATED);
     }
 
-     // GET /api/scripts/{id}
-    // Retrieves a script by ID
+     
     @GetMapping("/{id}")
     public ResponseEntity<Script> getScriptById(@PathVariable Long id) {
         return scriptService.getScriptById(id)
@@ -54,30 +51,26 @@ public ResponseEntity<Script> getScriptByName(@PathVariable String name) {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 }
 
-    // GET /api/scripts
-    // Retrieves all scripts
+   
     @GetMapping
     public ResponseEntity<List<Script>> getAllScripts() {
         List<Script> scripts = scriptService.getAllScripts();
         return new ResponseEntity<>(scripts, HttpStatus.OK);
     }
 
-     // PUT /api/scripts/{id}
-    // Updates an existing script
+    
     @PutMapping("/{id}")
     public ResponseEntity<Script> updateScript(@PathVariable Long id, @RequestBody Script script) {
         try {
-            // The service method now returns Script directly or throws an exception
+            
             Script updatedScript = scriptService.updateScript(id, script);
             return new ResponseEntity<>(updatedScript, HttpStatus.OK);
         } catch (RuntimeException e) {
-            // Catch the exception thrown by the service if script is not found
+           
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    // DELETE /api/scripts/{id}
-    // Deletes a script by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteScript(@PathVariable Long id) {
         try {
@@ -87,8 +80,7 @@ public ResponseEntity<Script> getScriptByName(@PathVariable String name) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    // DELETE /api/scripts/byName/{name}
-    // Deletes a script by Name
+   
     @DeleteMapping("/byName/{name}")
     public ResponseEntity<Void> deleteScriptByName(@PathVariable String name) {
         try {

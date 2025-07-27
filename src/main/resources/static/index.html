@@ -4,62 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Script Manager</title>
-    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN for easy styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for better aesthetics - Black & White Theme */
         body {
-            font-family: 'Inter', sans-serif; /* Apply Inter font */
-            background-color: #1a1a1a; /* Dark background */
-            color: #e0e0e0; /* Light text */
-            line-height: 1.6; /* Improve readability */
+            font-family: 'Inter', sans-serif; 
+            background-color: #1a1a1a; 
+            color: #e0e0e0; 
+            line-height: 1.6; 
         }
         .container {
             max-width: 900px;
             margin: 2rem auto;
-            padding: 2rem; /* Slightly more padding */
-            background-color: #2a2a2a; /* Slightly lighter dark for content areas */
-            border-radius: 16px; /* More rounded corners */
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+            padding: 2rem; 
+            background-color: #2a2a2a; 
+            border-radius: 16px; 
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); 
         }
         h1, h2 {
-            font-weight: 700; /* Bolder headings */
-            color: #f0f0f0; /* Slightly brighter white for headings */
+            font-weight: 700; 
+            color: #f0f0f0; 
         }
         .form-group label {
-            font-weight: 500; /* Medium weight for labels */
+            font-weight: 500; 
             color: #cccccc;
         }
         .form-control {
             border: 1px solid #444444;
-            border-radius: 10px; /* Slightly more rounded inputs */
-            padding: 0.85rem 1.25rem; /* More padding in inputs */
+            border-radius: 10px; 
+            padding: 0.85rem 1.25rem;
             width: 100%;
-            background-color: #333333; /* Dark input background */
-            color: #e0e0e0; /* Light input text */
+            background-color: #333333; 
+            color: #e0e0e0; 
             transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .form-control::placeholder {
-            color: #888888; /* Lighter placeholder text */
+            color: #888888; 
         }
         .form-control:focus {
             outline: none;
-            border-color: #777777; /* Lighter gray focus ring */
-            box-shadow: 0 0 0 4px rgba(119, 119, 119, 0.3); /* More pronounced focus shadow */
+            border-color: #777777; 
+            box-shadow: 0 0 0 4px rgba(119, 119, 119, 0.3); 
         }
         .btn {
-            padding: 0.8rem 1.8rem; /* More padding for buttons */
-            border-radius: 10px; /* More rounded buttons */
+            padding: 0.8rem 1.8rem; 
+            border-radius: 10px; 
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Subtle button shadow */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); 
         }
         .btn:hover {
-            transform: translateY(-2px); /* Slightly more lift on hover */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
         }
         .btn-primary {
             background-color: #555555; /* Dark gray primary button */
@@ -115,13 +112,13 @@
             align-items: center;
         }
         .modal-content {
-            background-color: #2a2a2a; /* Modal background */
+            background-color: #2a2a2a; 
             margin: auto;
-            padding: 2.5rem; /* More padding */
-            border-radius: 16px; /* More rounded */
+            padding: 2.5rem; 
+            border-radius: 16px; 
             width: 90%;
-            max-width: 650px; /* Slightly wider modal */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Stronger modal shadow */
+            max-width: 650px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
             position: relative;
             color: #e0e0e0;
         }
@@ -130,30 +127,29 @@
             top: 1.2rem;
             right: 1.8rem;
             color: #888888;
-            font-size: 32px; /* Larger close button */
+            font-size: 32px; 
             font-weight: bold;
             cursor: pointer;
             transition: color 0.2s ease-in-out;
         }
         .close-button:hover,
         .close-button:focus {
-            color: #ffffff; /* White on hover */
+            color: #ffffff; 
             text-decoration: none;
             cursor: pointer;
         }
         textarea {
-            resize: vertical; /* Allow vertical resizing */
-            min-height: 180px; /* Taller minimum height for content textarea */
-        }
-        /* Feedback messages */
+            resize: vertical; 
+            min-height: 180px; 
+       
         .feedback-success {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50; 
             color: white;
         }
         .feedback-error {
-            background-color: #f44336; /* Red */
+            background-color: #f44336; 
             color: white;
-        }
+        }}
     </style>
 </head>
 <body class="p-4">
@@ -231,7 +227,7 @@
     </div>
 
     <script>
-        const API_BASE_URL = '/api/scripts'; // Your Spring Boot API URL
+        const API_BASE_URL = '/api/scripts'; 
 
         const scriptNameInput = document.getElementById('scriptName');
         const scriptContentInput = document.getElementById('scriptContent');
@@ -256,19 +252,16 @@
         const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
         const feedbackMessageDiv = document.getElementById('feedbackMessage');
 
-        let scriptToDeleteId = null; // To store the ID of the script being confirmed for deletion
+        let scriptToDeleteId = null; 
 
-        // Function to show a modal
         function showModal(modalElement) {
-            modalElement.style.display = 'flex'; // Use flex to center content
+            modalElement.style.display = 'flex'; 
         }
 
-        // Function to hide a modal
         function hideModal(modalElement) {
             modalElement.style.display = 'none';
         }
 
-        // Function to display feedback messages
         function showFeedback(type, text) {
             feedbackMessageDiv.textContent = text;
             feedbackMessageDiv.className = `p-4 mb-6 rounded-lg text-sm font-medium ${type === 'success' ? 'feedback-success' : 'feedback-error'}`;
@@ -276,29 +269,25 @@
             setTimeout(() => {
                 feedbackMessageDiv.style.display = 'none';
                 feedbackMessageDiv.textContent = '';
-            }, 3000); // Clear after 3 seconds
+            }, 3000); 
         }
 
-        // Fetch and display scripts (can be all or by name)
         async function fetchScripts(searchName = '') {
             let url = API_BASE_URL;
             if (searchName) {
-                // Encode the search name to handle spaces and special characters in URL
                 url = `${API_BASE_URL}/byName/${encodeURIComponent(searchName)}`;
             }
 
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
-                    // If searching by name and not found, the backend returns 404
                     if (response.status === 404 && searchName) {
-                        renderScripts([]); // Show empty list for no search results
+                        renderScripts([]); 
                         return;
                     }
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                // If searching by name, the backend returns a single script object, not an array
                 const scripts = searchName ? [data] : data;
                 renderScripts(scripts);
             } catch (error) {
@@ -308,11 +297,9 @@
             }
         }
 
-        // Render scripts into the list
         function renderScripts(scripts) {
-            scriptsList.innerHTML = ''; // Clear existing list
+            scriptsList.innerHTML = ''; 
             if (scripts.length === 0) {
-                // Show a different message if it's a search with no results
                 if (searchNameInput.value.trim()) {
                     noScriptsMessage.textContent = `No script found with name "${searchNameInput.value.trim()}".`;
                 } else {
@@ -334,13 +321,11 @@
                     scriptItem.appendChild(scriptNameSpan);
                     scriptsList.appendChild(scriptItem);
 
-                    // Add click listener to open modal for editing
                     scriptItem.addEventListener('click', () => openScriptModal(script.id));
                 });
             }
         }
 
-        // Open the modal with script details
         async function openScriptModal(id) {
             try {
                 const response = await fetch(`${API_BASE_URL}/${id}`);
@@ -359,7 +344,6 @@
             }
         }
 
-        // Add a new script
         addScriptBtn.addEventListener('click', async () => {
             const name = scriptNameInput.value.trim();
             const content = scriptContentInput.value.trim();
@@ -387,14 +371,13 @@
                 showFeedback('success', `Script "${newScript.name}" added successfully!`);
                 scriptNameInput.value = '';
                 scriptContentInput.value = '';
-                fetchScripts(); // Refresh the list
+                fetchScripts(); 
             } catch (error) {
                 console.error('Error adding script:', error);
                 showFeedback('error', 'Failed to add script. Check console for details.');
             }
         });
 
-        // Update an existing script
         updateScriptBtn.addEventListener('click', async () => {
             const id = modalScriptId.value;
             const name = modalScriptName.value.trim();
@@ -422,23 +405,21 @@
                 console.log('Script updated:', updatedScript);
                 showFeedback('success', `Script "${updatedScript.name}" updated successfully!`);
                 hideModal(scriptModal);
-                fetchScripts(); // Refresh the list
+                fetchScripts();
             } catch (error) {
                 console.error('Error updating script:', error);
                 showFeedback('error', 'Failed to update script. Check console for details.');
             }
         });
 
-        // Delete a script (show confirmation modal first)
         deleteScriptBtn.addEventListener('click', () => {
             scriptToDeleteId = modalScriptId.value;
-            hideModal(scriptModal); // Hide the edit modal
-            showModal(confirmationModal); // Show the confirmation modal
+            hideModal(scriptModal);odal
+            showModal(confirmationModal); 
         });
 
-        // Confirm deletion
         confirmDeleteBtn.addEventListener('click', async () => {
-            if (!scriptToDeleteId) return; // Should not happen if flow is correct
+            if (!scriptToDeleteId) return; 
 
             try {
                 const response = await fetch(`${API_BASE_URL}/${scriptToDeleteId}`, {
@@ -452,42 +433,36 @@
                 console.log('Script deleted:', scriptToDeleteId);
                 showFeedback('success', `Script deleted successfully!`);
                 hideModal(confirmationModal);
-                scriptToDeleteId = null; // Clear the ID
-                fetchScripts(); // Refresh the list
+                scriptToDeleteId = null; 
+                fetchScripts(); 
             } catch (error) {
                 console.error('Error deleting script:', error);
                 showFeedback('error', 'Failed to delete script. Check console for details.');
             }
         });
 
-        // Cancel deletion
         cancelDeleteBtn.addEventListener('click', () => {
             hideModal(confirmationModal);
-            scriptToDeleteId = null; // Clear the ID
-            // Optionally, re-open the script modal if the user was editing
-            // You might want to store the script data before showing confirmation
+            scriptToDeleteId = null; 
         });
 
-        // Search script by name
         searchScriptBtn.addEventListener('click', () => {
             const searchName = searchNameInput.value.trim();
             fetchScripts(searchName);
         });
 
-        // Clear search and show all scripts
         clearSearchBtn.addEventListener('click', () => {
-            searchNameInput.value = ''; // Clear the search input
-            fetchScripts(); // Fetch all scripts
+            searchNameInput.value = ''; 
+            fetchScripts(); 
         });
 
-        // Allow pressing Enter to search
         searchNameInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 searchScriptBtn.click();
             }
         });
 
-        // Close modal event listeners
+     
         closeButton.addEventListener('click', () => hideModal(scriptModal));
         window.addEventListener('click', (event) => {
             if (event.target == scriptModal) {
@@ -498,7 +473,7 @@
             }
         });
 
-        // Initial fetch when the page loads
+       
         document.addEventListener('DOMContentLoaded', fetchScripts);
     </script>
 </body>
