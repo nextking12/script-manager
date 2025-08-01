@@ -12,13 +12,13 @@
             --accent-hover: #C89F7B;
             --accent-light: rgba(212, 175, 140, 0.1);
             --bg-primary: #000000;
-            --bg-secondary: #ffffff;
-            --bg-card: #fafafa;
-            --text-primary: #000000;
-            --text-secondary: #666666;
-            --text-muted: #999999;
-            --border-color: #e5e5e5;
-            --border-light: #f0f0f0;
+--bg-secondary: #1a1a1a;
+            --bg-card: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            --border-color: #404040;
+            --border-light: #2f2f2f;
             --shadow-light: rgba(0, 0, 0, 0.05);
             --shadow-medium: rgba(0, 0, 0, 0.1);
             --shadow-strong: rgba(0, 0, 0, 0.15);
@@ -41,7 +41,7 @@
             max-width: 900px;
             margin: 2rem auto;
             padding: 2.5rem;
-            background: var(--bg-secondary);
+background: var(--bg-primary);
             border-radius: 20px;
             box-shadow: 0 20px 60px var(--shadow-strong);
             border: 1px solid var(--border-light);
@@ -393,8 +393,33 @@
                 <input type="text" id="scriptName" class="form-control" placeholder="e.g., My JavaScript Utility" required>
             </div>
             <div class="form-group">
-                <label for="scriptContent">Script Content:</label>
-                <textarea id="scriptContent" class="form-control" rows="8" placeholder="e.g., console.log('Hello');" required></textarea>
+                <label for="languageSelect">Programming Language:</label>
+                <select id="languageSelect" class="form-control">
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="ruby">Ruby</option>
+                    <option value="go">Go</option>
+                    <option value="php">PHP</option>
+                    <option value="cpp">C++</option>
+                    <option value="csharp">C#</option>
+                    <option value="rust">Rust</option>
+                    <option value="typescript">TypeScript</option>
+                    <option value="bash">Bash</option>
+                    <option value="sql">SQL</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="json">JSON</option>
+                    <option value="yaml">YAML</option>
+                    <option value="xml">XML</option>
+                    <option value="markdown">Markdown</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="scriptContent">Script Content (Markdown supported):</label>
+                <textarea id="scriptContent" class="form-control" rows="8" placeholder="```javascript
+console.log('Hello World!');
+```" required></textarea>
             </div>
             <button id="addScriptBtn" class="btn btn-primary" style="width: 100%;">Add Script</button>
         </div>
