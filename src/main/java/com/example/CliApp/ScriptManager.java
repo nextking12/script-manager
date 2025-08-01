@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CliAppApplication {
+public class ScriptManager {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CliAppApplication.class, args);
+		SpringApplication.run(ScriptManager.class, args);
 	}
 
 }
