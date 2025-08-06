@@ -3,4 +3,54 @@
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  /* Dark theme colors */
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-card: #111111;
+  --color-card-foreground: #ffffff;
+  --color-popover: #111111;
+  --color-popover-foreground: #ffffff;
+  --color-primary: #ffffff;
+  --color-primary-foreground: #000000;
+  --color-secondary: #1a1a1a;
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #1a1a1a;
+  --color-muted-foreground: #a3a3a3;
+  --color-accent: #1a1a1a;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #333333;
+  --color-input: #1a1a1a;
+  --color-ring: #ffffff;
+}
+
+/* Apply dark theme globally */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Ensure all text defaults to white */
+h1, h2, h3, h4, h5, h6, p, span, div, a {
+  color: var(--color-foreground);
+}
+
+/* Style links */
+a {
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
 }
