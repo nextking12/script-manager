@@ -19,16 +19,13 @@ export default function CreatePage() {
       </div>
 
       <div className="space-y-4">
-        <label htmlFor="message" className="block text-xl text-gray-400">
-          Details:
-        </label>
         <textarea
           id="message"
           name="message"
           placeholder="Enter your script here "
           required
           rows={6}
-          className="w-full bg-[#111] rounded-xl p-4 text-xl border-0 focus:ring-1 focus:ring-gray-400 placeholder:text-gray-600 resize-none"
+          className="w-[50vw] bg-[#111] rounded-xl p-4 text-xl border-0 focus:ring-1 focus:ring-gray-400 placeholder:text-gray-600 resize-none"
         />
       </div>
 
