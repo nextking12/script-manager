@@ -18,11 +18,37 @@ export default function CreatePage() {
         />
       </div>
 
+<div className="space-y-4">
+  <select
+    id="language"
+    name="language"
+    required
+    className="w-full bg-[#111] rounded-xl p-4 text-xl border-0 focus:ring-1 focus:ring-gray-400 text-white-600"
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Select your script language
+    </option>
+    <option value="javascript">JavaScript</option>
+    <option value="python">Python</option>
+    <option value="bash">Bash</option>
+    <option value="powershell">PowerShell</option>
+    <option value="php">PHP</option>
+    <option value="ruby">Ruby</option>
+    <option value="go">Go</option>
+    <option value="rust">Rust</option>
+    <option value="java">Java</option>
+    <option value="csharp">C#</option>
+    <option value="cpp">C++</option>
+    <option value="typescript">TypeScript</option>
+  </select>
+</div>
+
       <div className="space-y-4">
         <textarea
           id="message"
           name="message"
-          placeholder="Enter your script here "
+          placeholder="Enter your script contents here "
           required
           rows={6}
           className="w-[50vw] bg-[#111] rounded-xl p-4 text-xl border-0 focus:ring-1 focus:ring-gray-400 placeholder:text-gray-600 resize-none"
