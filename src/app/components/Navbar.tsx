@@ -25,19 +25,19 @@ export default function Navbar() {
               Home
             </Link>
             <Link
-              href="/search"
+              href="/components/search"
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
               Search
             </Link>
             <Link
-              href="/create"
+              href="/components/create"
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
               Create
             </Link>
             <a
-              href="https://github.com"
+              href="https://github.com/nextking12/script-manager"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -96,21 +96,21 @@ export default function Navbar() {
                 Home
               </Link>
               <Link
-                href="/search"
+                href="/components/search"
                 className="block px-3 py-2 text-foreground hover:text-primary hover:bg-secondary rounded-md font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Search
               </Link>
               <Link
-                href="/create"
+                href="/components/create"
                 className="block px-3 py-2 text-foreground hover:text-primary hover:bg-secondary rounded-md font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Create
               </Link>
               <a
-                href="https://github.com"
+                href="https://github.com/nextking12/script-manager"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 text-foreground hover:text-primary hover:bg-secondary rounded-md font-medium transition-colors"
