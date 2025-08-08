@@ -1,29 +1,79 @@
-# Create T3 App
+# Script Manager — Frontend Quick Start
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This project is a Next.js app. These steps show how to run the frontend locally. No database or backend setup is required.
 
-## What's next? How do I make an app with this?
+## Requirements
+- Node.js 20+ (LTS recommended)
+- pnpm (recommended)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Install pnpm (one-liners):
+- macOS: `brew install pnpm`
+- Windows (PowerShell): `npm install -g pnpm`
+- Linux: `npm install -g pnpm`
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## One-liners
+Run everything (clone → env → install → start) in a single command.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+macOS/Linux (bash/zsh) using pnpm:
+```
+sh -c "git clone <repo-url> && cd script-manager && cp .env.example .env && printf '\nSKIP_ENV_VALIDATION=1\n' >> .env && pnpm install && pnpm dev"
+```
 
-## Learn More
+Windows (PowerShell) using pnpm:
+```
+powershell -NoProfile -Command "git clone <repo-url>; Set-Location script-manager; Copy-Item .env.example .env -Force; Add-Content .env 'SKIP_ENV_VALIDATION=1'; pnpm install; pnpm dev"
+```
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+Prefer npm or yarn?
+- macOS/Linux with npm:
+```
+sh -c "git clone <repo-url> && cd script-manager && cp .env.example .env && printf '\nSKIP_ENV_VALIDATION=1\n' >> .env && npm install && npm run dev"
+```
+- macOS/Linux with yarn:
+```
+sh -c "git clone <repo-url> && cd script-manager && cp .env.example .env && printf '\nSKIP_ENV_VALIDATION=1\n' >> .env && yarn && yarn dev"
+```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## 1) Get the code
+```
+# using git
+git clone <repo-url>
+cd script-manager
+```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## 2) Install dependencies
+```
+pnpm install
+```
+(You can use `npm install` or `yarn` if you prefer, but this repo uses pnpm.)
 
-## How do I deploy this?
+## 3) Create an env file (frontend-only)
+This app validates environment variables at startup. Since we’re only running the frontend, we’ll skip validation.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+```
+# copy example env and add a skip flag
+cp .env.example .env
+# open .env and ensure this line exists
+SKIP_ENV_VALIDATION=1
+```
+
+Note: If you prefer not to skip, you can also satisfy validation by setting a placeholder URL:
+```
+DATABASE_URL=https://example.com
+```
+
+## 4) Start the dev server
+```
+pnpm dev
+```
+Then open http://localhost:3000 in your browser.
+
+## Scripts
+- `pnpm dev` — start the development server
+- `pnpm build` — build the app for production
+- `pnpm start` — run the built app locally
+
+## Troubleshooting
+- Env validation error: add `SKIP_ENV_VALIDATION=1` to your `.env` (see step 3).
+- pnpm not found: install pnpm with `brew install pnpm` (macOS) or `npm install -g pnpm`.
+- Port in use: stop the other app using port 3000, or run `PORT=3001 pnpm dev` and open http://localhost:3001.
