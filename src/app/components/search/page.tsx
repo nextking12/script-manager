@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import Navbar from "../Navbar";
 
 export default function CreatePage() {
   const [selectedLanguage, setSelectedLanguage] = useState("");
@@ -9,8 +8,7 @@ export default function CreatePage() {
 
   return (
     <>
-      <Navbar />
-      <main className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground pt-16">
+<main className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
        <h1 className="text-6xl font-extrabold mb-16 text-center"><span style={{color: 'hsl(25, 60%, 55%)'}}>Search For</span> Your Scripts </h1>
 
