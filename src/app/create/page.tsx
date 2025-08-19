@@ -3,6 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
 
+const handleSubmission = (event: any) => {
+  event.preventDefault();
+}
+
 export default function CreatePage() {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [scriptContent, setScriptContent] = useState("");

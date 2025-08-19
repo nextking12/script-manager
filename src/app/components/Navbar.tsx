@@ -25,13 +25,13 @@ export default function Navbar() {
               Home
             </Link>
             <Link
-              href="/components/search"
+              href="/search"
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
               Search
             </Link>
             <Link
-              href="/components/create"
+              href="/create"
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
               Create
