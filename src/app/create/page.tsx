@@ -5,6 +5,9 @@ import Editor from "@monaco-editor/react";
 
 const handleSubmission = (event: any) => {
   event.preventDefault();
+  const formData = new FormData(event.target);
+  const info = formData.get("info");
+  const language = formData.get("language");
 }
 
 export default function CreatePage() {
@@ -14,7 +17,7 @@ export default function CreatePage() {
   return (
     <>
 <main className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+      <form onSubmit={handleSubmission} className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
        <h1 className="text-6xl font-extrabold mb-16 text-center"><span style={{color: 'hsl(25, 60%, 55%)'}}>Create and Store</span> Scripts Here</h1>
 
        <div className="space-y-4">
@@ -38,6 +41,7 @@ export default function CreatePage() {
     value={selectedLanguage}
     onChange={(e) => setSelectedLanguage(e.target.value)}
   >
+    
     <option value="" disabled>
       Select your script language
     </option>
@@ -99,9 +103,8 @@ export default function CreatePage() {
        <span>Save Your Script</span>
         
     </button>
-        
-       
-      </div>
+      </form>
+    
     </main>
     </>
   );
