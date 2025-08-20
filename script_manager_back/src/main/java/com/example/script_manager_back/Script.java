@@ -14,6 +14,7 @@ public class Script {
     @Column(nullable = false)
     private String language;
 
+    @Lob
     @Column(nullable = false, columnDefinition = "TEXT")
     private String scriptContent;
 
@@ -57,6 +58,15 @@ public class Script {
 
     public void setScriptContent(String scriptContent) {
         this.scriptContent = scriptContent;
+    }
+
+    @Override
+    public String toString() {
+        return "Script{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", scriptContent='" + scriptContent + '\'' +
+                '}';
     }
 
 

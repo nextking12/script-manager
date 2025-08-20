@@ -2,13 +2,42 @@
 import Link from "next/link";
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
+import { useRouter } from "next/navigation";
 
-const handleSubmission = (event: any) => {
+const handleSubmission = async (
+  event: React.FormEvent<HTMLFormElement>,
+  scriptContent: string,
+) => {
   event.preventDefault();
-  const formData = new FormData(event.target);
+  const formData = new FormData(event.currentTarget);
   const info = formData.get("info");
   const language = formData.get("language");
-}
+
+  try {
+    const response = await fetch("/api/scripts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ info, language, scriptContent }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Submission failed:", errorData);
+      alert(`Error: ${errorData.message || "Failed to save script."}`);
+      return;
+    }
+
+    const result = await response.json();
+    console.log("Submission successful:", result);
+    alert("Script saved successfully!");
+    // Optionally, you could redirect the user, e.g., router.push(`/scripts/${result.id}`);
+  } catch (error) {
+    console.error("An error occurred:", error);
+    alert("An error occurred while saving the script. Please try again.");
+  }
+};
 
 export default function CreatePage() {
   const [selectedLanguage, setSelectedLanguage] = useState("");
@@ -16,8 +45,8 @@ export default function CreatePage() {
 
   return (
     <>
-<main className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground">
-      <form onSubmit={handleSubmission} className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground">
+        <form onSubmit={(e) => handleSubmission(e, scriptContent)} className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
        <h1 className="text-6xl font-extrabold mb-16 text-center"><span style={{color: 'hsl(25, 60%, 55%)'}}>Create and Store</span> Scripts Here</h1>
 
        <div className="space-y-4">
@@ -86,8 +115,8 @@ export default function CreatePage() {
             className="rounded-xl overflow-hidden"
           />
           <textarea
-            id="message"
-            name="message"
+            id="scriptContent"
+            name="scriptContent"
             value={scriptContent}
             onChange={() => {}} // Controlled by Monaco Editor
             className="sr-only"
@@ -103,7 +132,7 @@ export default function CreatePage() {
        <span>Save Your Script</span>
         
     </button>
-      </form>
+        </form>
     
     </main>
     </>
