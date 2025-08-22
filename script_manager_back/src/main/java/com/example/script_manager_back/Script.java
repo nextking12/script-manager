@@ -1,7 +1,8 @@
-package main.java.com.example.script_manager_back;
+package com.example.script_manager_back;
 
+import jakarta.persistence.*;
 
-@Entity
+@Entity 
 @Table(name = "scripts")    
 public class Script {
     @Id
@@ -64,7 +65,8 @@ public class Script {
     public String toString() {
         return "Script{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", info='" + info + '\'' +
+                ", language='" + language + '\'' +
                 ", scriptContent='" + scriptContent + '\'' +
                 '}';
     }

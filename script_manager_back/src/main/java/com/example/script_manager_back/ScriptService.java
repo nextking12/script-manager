@@ -1,8 +1,7 @@
-package main.java.com.example.script_manager_back;
+package com.example.script_manager_back;
 
 import java.util.List;
-
-import com.example.script_manager_back.ScriptRepository;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ScriptService {
@@ -33,10 +32,9 @@ public class ScriptService {
 
 
     public void deleteScriptByName(String name){
-        scriptRepository.findScriptByName(name)
+        Script script = scriptRepository.findScriptByName(name)
              .orElseThrow(() -> new RuntimeException("Script not found with name " + name));
         scriptRepository.delete(script);
-
     }
 
 
