@@ -16,7 +16,7 @@ public class ScriptController {
         this.scriptService = scriptService;
     }
 
-    @PostMapping("/create") // create new script
+    @PostMapping // create new script
     public ResponseEntity<Script> createScript(@RequestBody Script script) {
         Script createdScript = scriptService.createScript(script);
         return new ResponseEntity<>(createdScript, HttpStatus.CREATED);

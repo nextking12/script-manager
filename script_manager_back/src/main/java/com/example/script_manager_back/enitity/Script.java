@@ -53,11 +53,11 @@ public class Script {
         this.language = language;
     }
 
-    public String getContent() {
+    public String getScriptContent() {
         return scriptContent;
     }
 
-    public void setContent(String scriptContent) {
+    public void setScriptContent(String scriptContent) {
         this.scriptContent = scriptContent;
     }
 

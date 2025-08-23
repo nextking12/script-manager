@@ -33,7 +33,7 @@ public class ScriptService {
         return scriptRepository.findScriptByName(name)
                 .map(script -> {
                     script.setName(updatedScript.getName());
-                    script.setContent(updatedScript.getContent());
+                    script.setScriptContent(updatedScript.getScriptContent());
                     return scriptRepository.save(script);
                 })
                 .orElseThrow(() -> new RuntimeException("Script with name " + name + " not found"));
