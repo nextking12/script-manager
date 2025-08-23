@@ -1,6 +1,7 @@
 package com.example.script_manager_back;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,18 +17,26 @@ public class ScriptService {
         return scriptRepository.findAll();
     }
 
-    public void addScript(Script script){
-        scriptRepository.save(script);
+    public Script createScript(Script script){
+        return scriptRepository.save(script);
     }
 
-    public Script getScriptByName(String name){
+    public Optional<Script> getScriptByName(String name){
+        return scriptRepository.findScriptByName(name);
+    }
+
+    public Optional<Script> getScriptByLanguage(String language){
+        return scriptRepository.findScriptByLanguage(language);
+    }
+
+    public Script updateScript(String name, Script updatedScript) {
         return scriptRepository.findScriptByName(name)
-         .orElseThrow(() -> new IllegalStateException(name + "not found"));
-    }
-
-    public Script getScriptByLanguage(String language){
-        return scriptRepository.findScriptByLanguage(language)
-            .orElseThrow(() -> new IllegalStateException(language + "not found"));
+                .map(script -> {
+                    script.setName(updatedScript.getName());
+                    script.setContent(updatedScript.getContent());
+                    return scriptRepository.save(script);
+                })
+                .orElseThrow(() -> new RuntimeException("Script with name " + name + " not found"));
     }
 
 
