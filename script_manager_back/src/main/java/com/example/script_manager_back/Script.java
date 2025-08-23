@@ -9,8 +9,8 @@ public class Script {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "info", nullable = false)
-    private String info;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String language;
@@ -22,8 +22,8 @@ public class Script {
     public Script() {
     }
 
-    public Script(String info, String language, String scriptContent) {
-        this.info = info;
+    public Script(String name, String language, String scriptContent) {
+        this.name = name;
         this.language = language;
         this.scriptContent = scriptContent;
     }
@@ -37,12 +37,12 @@ public class Script {
         this.id = id;
     }
 
-    public String getInfo() {
-        return info;
+    public String getName() {
+        return name;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLanguage() {
@@ -53,11 +53,11 @@ public class Script {
         this.language = language;
     }
 
-    public String getScriptContent() {
+    public String getContent() {
         return scriptContent;
     }
 
-    public void setScriptContent(String scriptContent) {
+    public void setContent(String scriptContent) {
         this.scriptContent = scriptContent;
     }
 
@@ -65,7 +65,7 @@ public class Script {
     public String toString() {
         return "Script{" +
                 "id=" + id +
-                ", info='" + info + '\'' +
+                ", name='" + name + '\'' +
                 ", language='" + language + '\'' +
                 ", scriptContent='" + scriptContent + '\'' +
                 '}';
