@@ -96,14 +96,14 @@ export default function Navbar() {
                 Home
               </Link>
               <Link
-                href="/components/search"
+                href="/search"
                 className="block px-3 py-2 text-foreground hover:text-primary hover:bg-secondary rounded-md font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Search
               </Link>
               <Link
-                href="/components/create"
+                href="/create"
                 className="block px-3 py-2 text-foreground hover:text-primary hover:bg-secondary rounded-md font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >

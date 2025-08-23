@@ -29,6 +29,20 @@ public class ScriptController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/search") // search by name via query parameter
+    public ResponseEntity<Script> getScriptByNameQuery(@RequestParam String name) {
+        return scriptService.getScriptByName(name)
+                .map(script -> new ResponseEntity<>(script, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/language") // search by language via query parameter
+    public ResponseEntity<Script> getScriptByLanguageQuery(@RequestParam String language) {
+        return scriptService.getScriptByLanguage(language)
+                .map(script -> new ResponseEntity<>(script, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    
     @GetMapping("/search/language/{language}") // search by language
     public ResponseEntity<Script> getScriptByLanguage(@PathVariable String language) {
         return scriptService.getScriptByLanguage(language)
