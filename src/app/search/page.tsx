@@ -22,6 +22,8 @@ export default function SearchPage() {
       if (response.ok) {
         const results = await response.json();
         setSearchResults(results);
+        setScriptName("");
+        setSelectedLanguage("");
       } else {
         console.error("Search failed");
         setSearchResults([]);

@@ -7,6 +7,7 @@ const handleSubmission = async (
   name: string,
   language: string,
   scriptContent: string,
+  clearForm: () => void,
 ) => {
   event.preventDefault();
 
@@ -30,6 +31,7 @@ const handleSubmission = async (
     const result = await response.json();
     console.log("Submission successful:", result);
     alert("Script saved successfully!");
+    clearForm();
   } catch (error) {
     console.error("An error occurred:", error);
     alert("An error occurred while saving the script. Please try again.");
@@ -41,12 +43,24 @@ export default function CreatePage() {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [scriptContent, setScriptContent] = useState("");
 
+  const clearForm = () => {
+    setName("");
+    setSelectedLanguage("");
+    setScriptContent("");
+  };
+
   return (
     <>
       <main className="bg-background text-foreground flex min-h-screen flex-col items-center justify-center">
         <form
           onSubmit={(e) =>
-            handleSubmission(e, name, selectedLanguage, scriptContent)
+            handleSubmission(
+              e,
+              name,
+              selectedLanguage,
+              scriptContent,
+              clearForm,
+            )
           }
           className="container flex flex-col items-center justify-center gap-12 px-4 py-16"
         >

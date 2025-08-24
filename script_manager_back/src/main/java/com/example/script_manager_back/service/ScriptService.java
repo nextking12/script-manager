@@ -29,6 +29,18 @@ public class ScriptService {
         return scriptRepository.findScriptByLanguage(language);
     }
 
+    public List<Script> searchScripts(String name, String language) {
+        if (name != null && !name.isEmpty() && language != null && !language.isEmpty()) {
+            return scriptRepository.findScriptsByNameContainingIgnoreCaseAndLanguage(name, language);
+        } else if (name != null && !name.isEmpty()) {
+            return scriptRepository.findScriptsByNameContainingIgnoreCase(name);
+        } else if (language != null && !language.isEmpty()) {
+            return scriptRepository.findScriptsByLanguage(language);
+        } else {
+            return scriptRepository.findAll();
+        }
+    }
+
     public Script updateScript(String name, Script updatedScript) {
         return scriptRepository.findScriptByName(name)
                 .map(script -> {
