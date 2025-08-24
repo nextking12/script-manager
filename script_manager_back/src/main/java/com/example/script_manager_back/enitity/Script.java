@@ -1,8 +1,8 @@
-package com.example.script_manager_back;
+package com.example.script_manager_back.enitity;
 
 import jakarta.persistence.*;
 
-@Entity 
+@Entity
 @Table(name = "scripts")    
 public class Script {
     @Id

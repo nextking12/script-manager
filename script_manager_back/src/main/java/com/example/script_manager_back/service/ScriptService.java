@@ -1,7 +1,10 @@
-package com.example.script_manager_back;
+package com.example.script_manager_back.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.example.script_manager_back.enitity.Script;
+import com.example.script_manager_back.repository.ScriptRepository;
 import org.springframework.stereotype.Service;
 
 @Service

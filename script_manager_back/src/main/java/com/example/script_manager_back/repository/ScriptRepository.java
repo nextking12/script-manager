@@ -1,7 +1,9 @@
-package com.example.script_manager_back;
+package com.example.script_manager_back.repository;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.example.script_manager_back.enitity.Script;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ScriptRepository extends JpaRepository<Script, Long> {

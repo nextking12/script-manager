@@ -1,6 +1,9 @@
-package com.example.script_manager_back;
+package com.example.script_manager_back.controller;
 
 import java.util.List;
+
+import com.example.script_manager_back.enitity.Script;
+import com.example.script_manager_back.service.ScriptService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
