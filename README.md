@@ -2,6 +2,15 @@
 
 Full-stack application with Next.js frontend and Spring Boot backend.
 
+## Getting Started
+
+**Clone the repository:**
+
+```bash
+git clone https://github.com/yourusername/script-manager.git
+cd script-manager
+```
+
 ## Quick Start (Docker - Recommended)
 
 **Requirements:**
