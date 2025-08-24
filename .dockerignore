@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.gitignore
+.env*
+README.md
+Dockerfile*
+docker-compose*
+.dockerignore
+script_manager_back

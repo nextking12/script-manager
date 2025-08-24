@@ -1,79 +1,70 @@
-# Script Manager — Frontend Quick Start
+# Script Manager
 
-This project is a Next.js app. These steps show how to run the frontend locally. No database or backend setup is required.
+Full-stack application with Next.js frontend and Spring Boot backend.
 
-## Requirements
-- Node.js 20+ (LTS recommended)
-- pnpm (recommended)
+## Quick Start (Docker - Recommended)
 
-Install pnpm (one-liners):
-- macOS: `brew install pnpm`
-- Windows (PowerShell): `npm install -g pnpm`
-- Linux: `npm install -g pnpm`
+**Requirements:**
 
-## One-liners
-Run everything (clone → env → install → start) in a single command.
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
 
-macOS/Linux (bash/zsh) using pnpm:
-```
-sh -c "git clone <repo-url> && cd script-manager && cp .env.example .env && printf '\nSKIP_ENV_VALIDATION=1\n' >> .env && pnpm install && pnpm dev"
+**One command to run everything:**
+
+```bash
+docker-compose up --build
 ```
 
-Windows (PowerShell) using pnpm:
-```
-powershell -NoProfile -Command "git clone <repo-url>; Set-Location script-manager; Copy-Item .env.example .env -Force; Add-Content .env 'SKIP_ENV_VALIDATION=1'; pnpm install; pnpm dev"
+**Access the application:**
+
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8080
+- Database: localhost:5432
+
+**Stop the application:**
+
+```bash
+docker-compose down
 ```
 
-Prefer npm or yarn?
-- macOS/Linux with npm:
-```
-sh -c "git clone <repo-url> && cd script-manager && cp .env.example .env && printf '\nSKIP_ENV_VALIDATION=1\n' >> .env && npm install && npm run dev"
-```
-- macOS/Linux with yarn:
-```
-sh -c "git clone <repo-url> && cd script-manager && cp .env.example .env && printf '\nSKIP_ENV_VALIDATION=1\n' >> .env && yarn && yarn dev"
-```
+## Development Setup
 
-## 1) Get the code
-```
-# using git
-git clone <repo-url>
-cd script-manager
-```
+### Frontend Only
 
-## 2) Install dependencies
-```
+**Requirements:** Node.js 20+, pnpm
+
+```bash
+# Install dependencies
 pnpm install
-```
-(You can use `npm install` or `yarn` if you prefer, but this repo uses pnpm.)
 
-## 3) Create an env file (frontend-only)
-This app validates environment variables at startup. Since we’re only running the frontend, we’ll skip validation.
-
-```
-# copy example env and add a skip flag
+# Create environment file
 cp .env.example .env
-# open .env and ensure this line exists
-SKIP_ENV_VALIDATION=1
-```
+echo "SKIP_ENV_VALIDATION=1" >> .env
 
-Note: If you prefer not to skip, you can also satisfy validation by setting a placeholder URL:
-```
-DATABASE_URL=https://example.com
-```
-
-## 4) Start the dev server
-```
+# Start development server
 pnpm dev
 ```
-Then open http://localhost:3000 in your browser.
+
+### Backend Only
+
+**Requirements:** Java 24+, PostgreSQL
+
+```bash
+# Navigate to backend
+cd script_manager_back
+
+# Run with Gradle
+./gradlew bootRun
+```
+
+**Database setup:** Ensure PostgreSQL is running on localhost:5432 with database `script_db`, user `user`, password `password`.
 
 ## Scripts
-- `pnpm dev` — start the development server
-- `pnpm build` — build the app for production
-- `pnpm start` — run the built app locally
 
-## Troubleshooting
-- Env validation error: add `SKIP_ENV_VALIDATION=1` to your `.env` (see step 3).
-- pnpm not found: install pnpm with `brew install pnpm` (macOS) or `npm install -g pnpm`.
-- Port in use: stop the other app using port 3000, or run `PORT=3001 pnpm dev` and open http://localhost:3001.
+- `pnpm dev` — start frontend development server
+- `pnpm build` — build frontend for production
+- `./gradlew bootRun` — start backend server
+- `docker-compose up --build` — run full stack with Docker
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
