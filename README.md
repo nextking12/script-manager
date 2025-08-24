@@ -2,6 +2,26 @@
 
 Full-stack application with Next.js frontend and Spring Boot backend.
 
+## Tech Stack
+
+**Frontend:**
+
+- Next.js 14+ (React framework)
+- TypeScript
+- Tailwind CSS
+- pnpm (package manager)
+
+**Backend:**
+
+- Spring Boot (Java)
+- PostgreSQL (database)
+- Gradle (build tool)
+
+**DevOps:**
+
+- Docker & Docker Compose
+- ESLint & Prettier (code formatting)
+
 ## Getting Started
 
 **Clone the repository:**
