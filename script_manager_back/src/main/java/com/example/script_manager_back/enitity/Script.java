@@ -15,7 +15,6 @@ public class Script {
     @Column(nullable = false)
     private String language;
 
-    @Lob
     @Column(nullable = false, columnDefinition = "TEXT")
     private String scriptContent;
 
