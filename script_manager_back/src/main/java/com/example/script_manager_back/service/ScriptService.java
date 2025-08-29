@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 public class ScriptService {
 
     private final ScriptRepository scriptRepository;
+    private final InputSanitizationService sanitizationService;
 
-    public ScriptService(ScriptRepository scriptRepository){
+    public ScriptService(ScriptRepository scriptRepository, InputSanitizationService sanitizationService){
         this.scriptRepository = scriptRepository;
+        this.sanitizationService = sanitizationService;
     }
 
     public List<Script>getAllScripts(){
@@ -21,6 +23,9 @@ public class ScriptService {
     }
 
     public Script createScript(Script script){
+        script.setName(sanitizationService.sanitizeScriptName(script.getName()));
+        script.setLanguage(sanitizationService.sanitizeLanguage(script.getLanguage()));
+        script.setScriptContent(sanitizationService.sanitizeScriptContent(script.getScriptContent()));
         return scriptRepository.save(script);
     }
 
@@ -47,8 +52,9 @@ public class ScriptService {
     public Script updateScript(String name, Script updatedScript) {
         return scriptRepository.findScriptByName(name)
                 .map(script -> {
-                    script.setName(updatedScript.getName());
-                    script.setScriptContent(updatedScript.getScriptContent());
+                    script.setName(sanitizationService.sanitizeScriptName(updatedScript.getName()));
+                    script.setLanguage(sanitizationService.sanitizeLanguage(updatedScript.getLanguage()));
+                    script.setScriptContent(sanitizationService.sanitizeScriptContent(updatedScript.getScriptContent()));
                     return scriptRepository.save(script);
                 })
                 .orElseThrow(() -> new RuntimeException("Script with name " + name + " not found"));

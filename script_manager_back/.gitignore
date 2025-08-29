@@ -35,3 +35,10 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Security ###
+# Environment-specific properties containing credentials
+application-dev.properties
+application-prod.properties
+.env
+docker-compose.override.yml

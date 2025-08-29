@@ -1,6 +1,7 @@
 package com.example.script_manager_back.enitity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "scripts")    
@@ -9,13 +10,21 @@ public class Script {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
+    @NotBlank(message = "Script name is required")
+    @Size(min = 1, max = 255, message = "Script name must be between 1 and 255 characters")
+    @Pattern(regexp = "^[a-zA-Z0-9_\\-\\.\\s]+$", message = "Script name contains invalid characters")
     private String name;
 
     @Column(nullable = false)
+    @NotBlank(message = "Language is required")
+    @Size(max = 100, message = "Language must be at most 100 characters")
+    @Pattern(regexp = "^[a-zA-Z0-9_\\-\\+\\.]+$", message = "Language contains invalid characters")
     private String language;
 
     @Column(nullable = false, columnDefinition = "TEXT")
+    @NotBlank(message = "Script content is required")
+    @Size(max = 1000000, message = "Script content must be at most 1MB")
     private String scriptContent;
 
     public Script() {
