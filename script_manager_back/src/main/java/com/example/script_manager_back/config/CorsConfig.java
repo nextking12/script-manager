@@ -19,10 +19,10 @@ public class CorsConfig {
     @Value("${app.cors.allowed-methods:GET,POST,PUT,DELETE,OPTIONS}")
     private String[] allowedMethods;
 
-    @Value("${app.cors.allowed-headers:*}")
+    @Value("${app.cors.allowed-headers:Content-Type,Authorization,X-Requested-With}")
     private String[] allowedHeaders;
 
-    @Value("${app.cors.allow-credentials:true}")
+    @Value("${app.cors.allow-credentials:false}")
     private boolean allowCredentials;
 
     @Value("${app.cors.max-age:3600}")
@@ -40,11 +40,7 @@ public class CorsConfig {
         configuration.setAllowedMethods(Arrays.asList(allowedMethods));
         
         // Set allowed headers
-        if (allowedHeaders.length == 1 && "*".equals(allowedHeaders[0])) {
-            configuration.addAllowedHeader("*");
-        } else {
-            configuration.setAllowedHeaders(Arrays.asList(allowedHeaders));
-        }
+        configuration.setAllowedHeaders(Arrays.asList(allowedHeaders));
         
         // Set credentials
         configuration.setAllowCredentials(allowCredentials);

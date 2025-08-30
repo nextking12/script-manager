@@ -30,20 +30,29 @@ public class ScriptService {
     }
 
     public Optional<Script> getScriptByName(String name){
-        return scriptRepository.findScriptByName(name);
+        String sanitizedName = sanitizationService.sanitizeSearchParameter(name);
+        return scriptRepository.findScriptByName(sanitizedName);
     }
 
     public Optional<Script> getScriptByLanguage(String language){
-        return scriptRepository.findScriptByLanguage(language);
+        String sanitizedLanguage = sanitizationService.sanitizeSearchParameter(language.toLowerCase());
+        return scriptRepository.findScriptByLanguage(sanitizedLanguage);
     }
 
     public List<Script> searchScripts(String name, String language) {
-        if (name != null && !name.isEmpty() && language != null && !language.isEmpty()) {
-            return scriptRepository.findScriptsByNameContainingIgnoreCaseAndLanguage(name, language);
-        } else if (name != null && !name.isEmpty()) {
-            return scriptRepository.findScriptsByNameContainingIgnoreCase(name);
-        } else if (language != null && !language.isEmpty()) {
-            return scriptRepository.findScriptsByLanguage(language);
+        // Sanitize search parameters
+        String sanitizedName = (name != null && !name.isEmpty()) ? 
+            sanitizationService.sanitizeSearchParameter(name) : null;
+        String sanitizedLanguage = (language != null && !language.isEmpty()) ? 
+            sanitizationService.sanitizeSearchParameter(language.toLowerCase()) : null;
+            
+        if (sanitizedName != null && !sanitizedName.isEmpty() && 
+            sanitizedLanguage != null && !sanitizedLanguage.isEmpty()) {
+            return scriptRepository.findScriptsByNameContainingIgnoreCaseAndLanguage(sanitizedName, sanitizedLanguage);
+        } else if (sanitizedName != null && !sanitizedName.isEmpty()) {
+            return scriptRepository.findScriptsByNameContainingIgnoreCase(sanitizedName);
+        } else if (sanitizedLanguage != null && !sanitizedLanguage.isEmpty()) {
+            return scriptRepository.findScriptsByLanguage(sanitizedLanguage);
         } else {
             return scriptRepository.findAll();
         }
